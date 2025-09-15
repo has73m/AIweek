@@ -1,0 +1,223 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>DATA MHS</title>
+    <style>
+        @import url('https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;600;700&display=swap');
+        @import url('https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css');
+
+        :root {
+            --primary-green: #2C6C63;
+            --secondary-purple: #5A487B;
+            --background-color: #F5F5F5;
+            --card-background: #FFFFFF;
+            --text-color-dark: #333333;
+            --text-color-light: #666666;
+            --shadow: 0 4px 12px rgba(0, 0, 0, 0.08);
+            --border-radius: 12px;
+        }
+
+        body {
+            font-family: 'Poppins', sans-serif;
+            margin: 0;
+            padding: 0;
+            background-color: var(--background-color);
+            color: var(--text-color-dark);
+            line-height: 1.6;
+        }
+
+        .header {
+            background: linear-gradient(135deg, var(--primary-green), #4CAF50);
+            color: white;
+            padding: 40px 20px;
+            text-align: center;
+            border-bottom-left-radius: 30px;
+            border-bottom-right-radius: 30px;
+            box-shadow: 0 6px 15px rgba(0, 0, 0, 0.2);
+        }
+
+        .header h1 {
+            margin: 0;
+            font-size: 3em;
+            font-weight: 700;
+            text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.2);
+        }
+
+        .container {
+            max-width: 1000px;
+            margin: 40px auto;
+            padding: 0 20px;
+        }
+
+        .stats-section {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+            gap: 25px;
+            margin-bottom: 40px;
+        }
+
+        .stat-card {
+            background-color: var(--card-background);
+            padding: 25px;
+            border-radius: var(--border-radius);
+            box-shadow: var(--shadow);
+            text-align: center;
+            transition: transform 0.3s ease, box-shadow 0.3s ease;
+        }
+
+        .stat-card:hover {
+            transform: translateY(-8px);
+            box-shadow: 0 8px 20px rgba(0, 0, 0, 0.15);
+        }
+        
+        .stat-card .icon {
+            font-size: 3em;
+            color: var(--primary-green);
+            margin-bottom: 10px;
+        }
+
+        .stat-card h2 {
+            margin: 0;
+            font-size: 2.8em;
+            font-weight: 600;
+            color: var(--primary-green);
+        }
+        
+        .stat-card p {
+            margin: 0;
+            font-size: 1em;
+            color: var(--text-color-light);
+            font-weight: 400;
+        }
+
+        .stat-card.happy .icon { color: #4CAF50; }
+        .stat-card.calm .icon { color: var(--secondary-purple); }
+        .stat-card.angry .icon { color: #F44336; }
+        .stat-card.journal .icon { color: #FFC107; }
+
+        .table-section {
+            background-color: var(--card-background);
+            padding: 25px;
+            border-radius: var(--border-radius);
+            box-shadow: var(--shadow);
+        }
+
+        .table-section h2 {
+            margin-top: 0;
+            font-size: 1.8em;
+            font-weight: 600;
+            color: var(--primary-green);
+            border-bottom: 2px solid var(--primary-green);
+            padding-bottom: 10px;
+            margin-bottom: 20px;
+        }
+
+        table {
+            width: 100%;
+            border-collapse: collapse;
+        }
+
+        th, td {
+            border-bottom: 1px solid #EEEEEE;
+            padding: 18px;
+            text-align: left;
+            transition: background-color 0.3s ease;
+        }
+
+        th {
+            background-color: #FAFAFA;
+            color: var(--text-color-light);
+            font-weight: 600;
+            text-transform: uppercase;
+            font-size: 0.9em;
+        }
+
+        tbody tr:hover {
+            background-color: #F8F8F8;
+        }
+    </style>
+</head>
+<body>
+
+    <div class="header">
+        <h1>DATA MHS</h1>
+    </div>
+
+    <div class="container">
+        <div class="stats-section">
+            <div class="stat-card happy">
+                <i class="fas fa-smile icon"></i>
+                <h2>150</h2>
+                <p>Happy Users</p>
+            </div>
+            <div class="stat-card calm">
+                <i class="fas fa-brain icon"></i>
+                <h2>80</h2>
+                <p>Breathing Sessions</p>
+            </div>
+            <div class="stat-card angry">
+                <i class="fas fa-frown-open icon"></i>
+                <h2>25</h2>
+                <p>Angry Moods</p>
+            </div>
+            <div class="stat-card journal">
+                <i class="fas fa-book-open icon"></i>
+                <h2>320</h2>
+                <p>Journal Entries</p>
+            </div>
+        </div>
+
+        <div class="table-section">
+            <h2>Chatbot Interaction Data</h2>
+            <table id="qa-table">
+                <thead>
+                    <tr>
+                        <th>Q (Question)</th>
+                        <th>A (Answer)</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    </tbody>
+            </table>
+        </div>
+    </div>
+
+    <script>
+        const tableBody = document.getElementById('qa-table').getElementsByTagName('tbody')[0];
+
+        const randomData = [
+            { q: "How can I improve my mood?", a: "Practice meditation or listen to calming music." },
+            { q: "What should I do when I feel stressed?", a: "Try a deep breathing exercise to help you relax." },
+            { q: "How is journaling important for mental health?", a: "It helps organize thoughts and express yourself to reduce pressure." },
+            { q: "What are some ways to be more positive?", a: "Focus on gratitude. Write down three good things daily." },
+            { q: "Where do I start with mental health care?", a: "Begin with the basics: sleep, healthy food, and regular exercise." },
+            { q: "How can I deal with daily stress?", a: "Break down large tasks into smaller ones and set time for relaxation." },
+            { q: "What are some signs of anxiety?", a: "Common signs include excessive worry, restlessness, and difficulty concentrating." },
+            { q: "How do I get better sleep?", a: "Create a routine, avoid screens before bed, and ensure a comfortable environment." },
+            { q: "What are the benefits of mindfulness?", a: "Mindfulness can reduce stress, improve focus, and increase self-awareness." },
+            { q: "How can I manage negative thoughts?", a: "Try to reframe them by challenging your own thoughts with positive evidence." },
+            { q: "What is the difference between sadness and depression?", a: "Sadness is a temporary emotion, while depression is a persistent mood disorder." },
+            { q: "How can I support a friend with mental health issues?", a: "Listen without judgment, encourage them to seek professional help, and offer practical support." },
+            { q: "What is self-care?", a: "Self-care is any activity we do to take care of our mental, emotional, and physical health." },
+            { q: "How do hobbies help mental health?", a: "Engaging in hobbies reduces stress and provides a sense of purpose and accomplishment." },
+            { q: "What are some tips for building resilience?", a: "Focus on building a strong support system and maintaining a positive outlook on challenges." }
+        ];
+
+        function createTable() {
+            randomData.forEach(item => {
+                const newRow = tableBody.insertRow();
+                const qCell = newRow.insertCell(0);
+                const aCell = newRow.insertCell(1);
+
+                qCell.textContent = item.q;
+                aCell.textContent = item.a;
+            });
+        }
+
+        window.onload = createTable;
+    </script>
+
+</body>
+</html>
